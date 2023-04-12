@@ -1,0 +1,25 @@
+{
+    "name": "Swifty",
+    "version": "0.0.1",
+    "description": "Public Transport",
+    "main": "app.js",
+    "scripts": {
+        "alpine-build": "npx esbuild src/alpine.js --outfile=public/alpine.js --bundle",
+        "tailwind-build": "npx tailwindcss -i ./src/tailwind.css -o ./public/styles/tailwind.css"
+    },
+    "dependencies": {
+        "@mapbox/polyline": "^1.2.0",
+        "alpinejs": "^3.12.0",
+        "body-parser": "^1.19.0",
+        "dotenv": "^16.0.3",
+        "esbuild": "^0.17.15",
+        "express": "^4.17.1",
+        "flowbite": "^1.6.4",
+        "http": "0.0.1-security",
+        "polyline": "^0.2.0",
+        "querystring": "^0.2.0"
+    },
+    "devDependencies": {
+        "tailwindcss": "^3.3.1"
+    }
+}

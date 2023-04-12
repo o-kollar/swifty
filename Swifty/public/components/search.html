@@ -1,0 +1,110 @@
+
+<div class="w-full flex m-2">
+  <svg class="float-right h-6 w-6 fill-gray-100">
+    <use xlink:href="../assets/icons.svg#settings"></use>
+  </svg>
+</div>
+<div class="absolute mb-5 top-0 sticky bg-gray-800">
+    <span id="handle" class="absolute md:hidden h-1 -translate-x-1/2 bg-gray-300 rounded-lg -top-2 left-1/2 dark:bg-gray-600"></span>
+
+    <div
+        class="mb-5 mt- flex grid-cols-2 font-medium text-gray-900 border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+    >
+        <ul x-data="$store.locationData">
+            <li class="w-full px-4 py-1 border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                <div class="relative">
+                    <input
+                        type="text"
+                        id="locationInput"
+                        class="block w-full px-0 text-gray-900 bg-transparent border-0 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:bg-gray-700 peer"
+                        placeholder=" "
+                        x-model="$store.locationData.originName"
+                        x-on:focus="$store.state.Focus.isFocused = true
+                        suggestion('locationInput')
+                         $store.state.Focus.isDestination = false "
+                        x-on:blur="$store.state.Focus.isFocused = false"
+                    />
+                    <label
+                        for="locationInput"
+                        class="absolute left-0 text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-4 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-emerald-300 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                        >Štart</label
+                    >
+                </div>
+            </li>
+            <li class="w-full px-4 py-1 rounded-b-lg">
+                <div class="relative">
+                    <input
+                        id="floating_standard"
+                        type="text"
+                        class="block px-0 w-full text-gray-900 bg-transparent border-0 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:bg-gray-700 peer"
+                        placeholder=" "
+                        x-model="$store.locationData.destinationName"
+                        x-on:focus="$store.state.Focus.isFocused = true 
+                        suggestion('floating_standard')
+                        $store.state.Focus.isDestination = true "
+                        x-on:blur="$store.state.Focus.isFocused = false"
+                    />
+                    <label
+                        for="floating_standard"
+                        class="absolute left-0 text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-4 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-emerald-300 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                        >Cieľ</label
+                    >
+                </div>
+            </li>
+        </ul>
+        <button @click="$store.locationData.swap()" type="button" class="ml-6 float-left place-self-center font-medium text-white bg-transparent">
+            <svg x-show="!Results.loading" class="fill-white h-10" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0,0,256,256">
+                <g transform="scale(5.33333,5.33333)">
+                    <path
+                        d="M11.47852,5c-0.39034,0.00571 -0.76308,0.16335 -1.03906,0.43945l-6,6c-0.39185,0.37623 -0.54969,0.9349 -0.41265,1.46055c0.13704,0.52565 0.54754,0.93616 1.07319,1.07319c0.52565,0.13704 1.08432,-0.02081 1.46055,-0.41265l3.43945,-3.43945v25.12891c0,4.26255 3.48746,7.75 7.75,7.75c4.26254,0 7.75,-3.48745 7.75,-7.75v-22.5c0,-2.64146 2.10854,-4.75 4.75,-4.75c2.64146,0 4.75,2.10854 4.75,4.75v25.12891l-3.43945,-3.43945c-0.28248,-0.2909 -0.67069,-0.45506 -1.07617,-0.45508c-0.61065,0.00015 -1.16026,0.37042 -1.38978,0.93629c-0.22952,0.56587 -0.09314,1.21439 0.34486,1.63988l6,6c0.58579,0.58555 1.5353,0.58555 2.12109,0l6,-6c0.39185,-0.37623 0.54969,-0.9349 0.41265,-1.46055c-0.13704,-0.52565 -0.54754,-0.93616 -1.07319,-1.07319c-0.52565,-0.13704 -1.08432,0.0208 -1.46055,0.41265l-3.43945,3.43945v-25.12891c0,-4.26254 -3.48745,-7.75 -7.75,-7.75c-4.26254,0 -7.75,3.48746 -7.75,7.75v22.5c0,2.64146 -2.10854,4.75 -4.75,4.75c-2.64146,0 -4.75,-2.10854 -4.75,-4.75v-25.12891l3.43945,3.43945c0.37623,0.39185 0.9349,0.54969 1.46055,0.41265c0.52565,-0.13704 0.93616,-0.54754 1.07319,-1.07319c0.13704,-0.52565 -0.0208,-1.08432 -0.41265,-1.46055l-6,-6c-0.28651,-0.28663 -0.6768,-0.44514 -1.08203,-0.43945z"
+                    ></path>
+                </g>
+            </svg>
+            <svg
+                x-show="Results.loading"
+                aria-hidden="true"
+                class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-emerald-200"
+                viewBox="0 0 100 101"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                    fill="currentColor"
+                />
+                <path
+                    d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                    fill="currentFill"
+                />
+            </svg>
+        </button>
+    </div>
+</div>
+
+  <x-component name="travel-params"></x-component>
+<ul
+    x-show="$store.locationData.originName || $store.locationData.destinationName"
+    id="suggestedLocation"
+    class="w-full divide-y divide-gray-200 dark:divide-gray-700"
+>
+    <template x-for="suggestion in $store.locationData.suggestedAddress">
+        <li
+            x-on:click=" $store.locationData.setLocationDetails(suggestion.userData.suggestFirstRow,[suggestion.userData.longitude,suggestion.userData.latitude],$store.state.Focus.isDestination);
+        $store.locationData.suggestedAddress = [];
+        if ($store.locationData.destinationName !== '' && $store.locationData.originName !== ''){ saveSearch(); getConnections()}"
+            class="pb-3 sm:pb-4"
+        >
+            <div class="flex space-x-4">
+                <div class="place-self-center flex-shrink-0">
+                    <svg class="h-6 w-6 fill-gray-100">
+                        <use xlink:href="../assets/icons.svg#pin"></use>
+                      </svg>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <p x-text="suggestion.userData.suggestFirstRow" class="text-sm font-medium text-gray-900 truncate dark:text-white"></p>
+                    <p c x-text="suggestion.userData.suggestSecondRow" class="text-sm text-gray-500 truncate dark:text-gray-200"></p>
+                </div>
+            </div>
+        </li>
+    </template>
+</ul>

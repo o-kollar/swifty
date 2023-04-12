@@ -1,0 +1,31 @@
+<div x-show="(searches.length > 0 && !$store.state.Focus.isFocused && !Results.res)" 
+    x-transition:enter="transition ease-out duration-800"
+    x-transition:enter-start="transform translate-x-full opacity-0"
+    x-transition:enter-end="transform translate-x-0 opacity-100"
+    x-transition:leave="transition ease-in duration-500"
+    x-transition:leave-start="transform translate-x-0 opacity-100"
+    x-transition:leave-end="transform translate-x-full opacity-0"
+    class="flex  w-full gap-5 overflow-x-auto whitespace-no-wrap  " >
+    
+<template x-for="suggestions in searches" >
+<div  x-on:click="
+$store.locationData.originName=suggestions.origin;
+$store.locationData.destinationName=suggestions.destination;
+$store.locationData.originCoords =suggestions.originLoc;
+$store.locationData.destinationCoords=suggestions.destinationLoc;
+getConnections()" class="inline-block p-5 mb-4 border h-30 border-gray-100 dark:hover:border-white rounded-lg bg-gray-50 dark:bg-gradient-to-r from-teal-200 to-lime-200 dark:border-gray-700">
+          <svg class="h-6 w-6 fill-gray-800">
+            <use xlink:href="../assets/icons.svg#history"></use>
+          </svg>
+        <ol class="mt-2 divider-gray-200 text-black ">
+        <li>
+         <p x-text="suggestions.origin" class="text-sm font-medium text-gray-900 truncate "></p>
+        </li>
+        
+        <li>
+            
+            <p x-text="suggestions.destination" class="text-sm font-medium text-gray-900 truncate "></p>
+        </li>
+    </ol>
+</template>
+</div>

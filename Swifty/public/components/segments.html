@@ -1,0 +1,20 @@
+<ol x-show="$store.state.Selected.Connection.segments">
+    <template x-for="segment in $store.state.Selected.Connection.segments">
+<li class="" x-on:click="fitMap([segment.originCoords, segment.destinationCoords])"
+class=""
+x-bind:class="{ ' mb-10 ml-4 border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white': segment.mode !== 'WALK', '': segment.mode === 'WALK' }">
+<ol class="relative border-l border-gray-200 dark:border-gray-700">
+<p class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500 place-self-center"  x-text="` Chôdza ${segment.distance}m`" x-show="segment.mode === 'WALK'"></p>
+<div class="absolute text-white w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+<p x-text="segment.lineID" x-show="segment.mode !== 'WALK'"></p>
+<h5 x-text="segment.origin" class="text-lg font-semibold text-gray-900 dark:text-white" x-show="segment.mode !== 'WALK'"></h5>
+<time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500" x-text="segment.fromTime" x-show="segment.mode !== 'WALK'"></time>
+<div class="absolute text-white w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+<h3 x-text="segment.destination" class="text-lg font-semibold text-gray-900 dark:text-white" x-show="segment.mode !== 'WALK'"></h3>
+<time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500" x-text="segment.toTime" x-show="segment.mode !== 'WALK'"></time>
+</ol>
+</li>
+</template>
+
+        
+  </ol>

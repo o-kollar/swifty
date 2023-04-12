@@ -1,0 +1,29 @@
+
+<ul class="grid w-24  inline-flex float-right mb-5 grid-cols-3" x-data="{ selected: 'transit' }">
+    <li>
+      <input type="radio" id="walk" name="hosting" value="walk" class="hidden peer" x-model="$store.state.TransitMode" x-bind:checked="$store.state.TransitMode === 'walk'" />
+      <label for="walk" class="inline-flex justify-center w-8 text-gray-500 bg-gray-800 rounded-lg cursor-pointer peer-checked:bg-gray-500">
+        <svg class="h-6 w-6 fill-gray-100" :class="{ 'fill-gray-800': $store.state.TransitMode === 'walk' }">
+          <use xlink:href="../assets/icons.svg#walk"></use>
+        </svg>
+      </label>
+    </li>
+    <li>
+      <input type="radio" id="bike" name="hosting" value="bike" class="hidden peer" x-model="$store.state.TransitMode" x-bind:checked="$store.state.TransitMode === 'bike'" />
+      <label for="bike" class="inline-flex justify-center w-8 text-gray-500 bg-gray-800 rounded-lg cursor-pointer peer-checked:bg-gray-500">
+        <svg class="h-6 w-6 fill-gray-100" :class="{ 'fill-gray-800': $store.state.TransitMode === 'bike' }">
+          <use xlink:href="../assets/icons.svg#bike"></use>
+        </svg>
+      </label>
+    </li>
+    <li>
+      <input type="radio" id="transit" name="hosting" value="transit" class="hidden peer" x-model="$store.state.TransitMode" x-bind:checked="$store.state.TransitMode === 'transit'" />
+      <label for="transit" class="inline-flex justify-center w-8 text-gray-500 bg-gray-800 rounded-lg cursor-pointer peer-checked:bg-gray-500 " >
+        <svg class="h-6 w-6 fill-gray-100" :class="{ 'fill-gray-800': $store.state.TransitMode === 'transit' }">
+          <use xlink:href="../assets/icons.svg#bus"></use>
+        </svg>
+      </label>
+    </li>
+  </ul>
+
+</div>
