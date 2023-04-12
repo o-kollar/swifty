@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+npm install
 npm run alpine-build
 npm run tailwind-build
-node app.js
+npm run start
